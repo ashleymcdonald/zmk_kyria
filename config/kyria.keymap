@@ -7,11 +7,12 @@
 #include <behaviors.dtsi>
 #include <dt-bindings/zmk/keys.h>
 
+#define LV_SYMBOL_CHARGE  "\xef\x81\xb9"
 
 #define DEFAULT 0
 #define NAV     1
 #define SYM     2
-#define FNL     3
+#define FN      3
 
 &left_encoder {
     status = "disabled";
@@ -26,13 +27,13 @@
 		compatible = "zmk,keymap";
 
 		default_layer {
-			label = "Base";
+			label = " QWERTY";
 			bindings = <
 // +----------+----------+----------+----------+----------+----------+                                                 +----------+----------+----------+----------+----------+----------+
 // |          |          |          |          |          |          |                                                 |          |          |          |          |          |          |
    &kp TAB    &kp Q      &kp W      &kp E      &kp R      &kp T                                                        &kp Y      &kp U      &kp I      &kp O      &kp P      &kp BSPC
    &kp ESC    &kp A      &kp S      &kp D      &kp F      &kp G                                                        &kp H      &kp J      &kp K      &kp L      &kp SEMI   &kp SQT
-   &kp LSHFT  &kp Z      &kp X      &kp C      &kp V      &kp B      &kp LBKT   &kp PSCRN        &mo FNL    &kp RBKT   &kp N      &kp M      &kp COMMA  &kp DOT    &kp FSLH   &kp RSHFT
+   &kp LSHFT  &kp Z      &kp X      &kp C      &kp V      &kp B      &kp LBKT   &kp PSCRN        &mo FN     &kp RBKT   &kp N      &kp M      &kp COMMA  &kp DOT    &kp FSLH   &kp RSHFT
 // +----------+----------+----------+----------+----------+----------+----------+----------+     +----------+----------+----------+----------+----------+----------+----------+----------+
 	                            &mo SYM    &kp LGUI  &mt LALT RET &kp SPC   &mo NAV          &mo SYM    &kp SPC    &kp RALT   &kp RGUI   &mo NAV
 //                                  |          |          |          |          |          |     |          |          |          |          |          |
@@ -40,13 +41,13 @@
 			>;
 		};
 		nav_layer {
-			label = "Navigation";
+			label = " NAV";
 			bindings = <
 // +----------+----------+----------+----------+----------+----------+                                                 +----------+----------+----------+----------+----------+----------+
 // |          |          |          |          |          |          |                                                 |          |          |          |          |          |          |
-   &trans     &kp N1     &kp N2     &kp N3     &kp N4     &kp N5                                                       &kp N6     &kp N7     &kp N8     &kp N9     &kp N0     &kp LEFT_BRACKET
-   &trans     &none      &none      &kp PAGE_UP &none     &none                                                        &none      &none      &kp UP     &none      &none      &kp PLUS
-   &trans     &none      &none      &kp PAGE_DOWN &none   &none      &trans     &trans           &trans     &trans     &none      &kp LEFT   &kp DOWN   &kp RIGHT  &none      &trans
+   &trans     &none      &none      &none      &none      &none                                                        &kp PG_UP  &kp HOME   &kp UP     &kp END   &kp C_VOL_UP &kp DEL
+   &trans     &kp LGUI   &kp LALT   &kp LCTL   &kp LSHFT  &none                                                        &kp PG_DN  &kp LEFT   &kp DOWN   &kp RIGHT &kp C_VOL_DN &kp INS
+   &trans     &none      &none      &none      &none      &none      &kp LPAR   &kp CAPS         &trans     &kp RPAR   &kp C_PAUSE &kp C_PREV &kp C_PLAY &kp C_NEXT &kp C_MUTE &kp PSCRN
 // +----------+----------+----------+----------+----------+----------+----------+----------+     +----------+----------+----------+----------+----------+----------+----------+----------+
                                     &trans     &trans     &trans     &trans     &trans           &trans     &trans     &trans     &trans     &trans
 //                                  |          |          |          |          |          |     |          |          |          |          |          |
@@ -54,13 +55,13 @@
 			>;
 		};
 		sym_layer {
-			label = "Symbols";
+			label = " SYM";
 			bindings = <
 // +----------+----------+----------+----------+----------+----------+                                                 +----------+----------+----------+----------+----------+----------+
 // |          |          |          |          |          |          |                                                 |          |          |          |          |          |          |
-   &trans     &kp F1     &kp F2     &kp F3     &kp F4     &kp F5                                                       &kp F6     &kp F7     &kp F8     &kp F9     &kp F10    &kp F11
-   &trans     &none      &none      &none      &none      &none                                                        &none      &none      &none      &none      &none      &kp F12
-   &trans     &none      &none      &none      &none      &none      &trans     &trans           &trans     &trans     &none      &none      &none      &none      &none      &trans
+   &kp GRAVE  &kp N1     &kp N2     &kp N3     &kp N4     &kp N5                                                       &kp N6     &kp N7     &kp N8     &kp N9     &kp N0     &kp EQUAL
+   &kp TILDE  &kp EXCL   &kp AT     &kp HASH   &kp DOLLAR &kp PERCENT                                                  &kp CARET  &kp AMPS   &kp STAR   &kp LPAR   &kp RPAR   &kp PLUS
+   &kp PIPE   &kp BSLH   &kp COLON  &kp SEMI   &kp MINUS  &kp LBKT   &kp LBRC   &trans           &trans     &kp RBRC   &kp RBKT   &kp UNDER  &kp COMMA  &kp DOT    &kp SLASH  &kp QMARK
 // +----------+----------+----------+----------+----------+----------+----------+----------+     +----------+----------+----------+----------+----------+----------+----------+----------+
                                     &trans     &none      &trans     &trans     &trans           &trans     &trans     &trans     &trans     &trans
 //                                  |          |          |          |          |          |     |          |          |          |          |          |
@@ -68,12 +69,12 @@
 			>;
 		};
 		fnl_layer {
-			label = "Functions";
+			label = " FUNC";
 			bindings = <
 // +----------+----------+----------+----------+----------+----------+                                                 +----------+----------+----------+----------+----------+----------+
 // |          |          |          |          |          |          |                                                 |          |          |          |          |          |          |
    &trans     &kp F9     &kp F10    &kp F11    &kp F12    &none                                                        &none      &none      &none      &none      &none      &none
-   &trans     &kp F5     &kp F6     &kp F7     &kp F8     &none                                                        &none      &none      &none      &none      &none      &none
+   &trans     &kp F5     &kp F6     &kp F7     &kp F8     &none                                                        &none      &kp RSHFT  &kp RCTL   &kp RALT   &kp RGUI   &none
    &trans     &kp F1     &kp F2     &kp F3     &kp F4     &none      &trans     &trans           &trans     &trans     &none      &none      &none      &none      &none      &trans
 // +----------+----------+----------+----------+----------+----------+----------+----------+     +----------+----------+----------+----------+----------+----------+----------+----------+
                                     &trans     &none      &trans     &trans     &trans           &trans     &trans     &trans     &trans     &trans
