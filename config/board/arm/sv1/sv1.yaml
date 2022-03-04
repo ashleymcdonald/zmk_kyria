@@ -1,0 +1,15 @@
+file_format: "1"
+id: sv1
+name: sv1
+type: keyboard
+url: https://splitkb.com/products/kyria-pcb-kit
+requires: [pro_micro]
+exposes: [i2c_oled]
+features:
+  - keys
+  - display
+  - encoder
+  - underglow
+siblings:
+  - sv1_left
+  - sv1_right
