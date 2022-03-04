@@ -13,4 +13,5 @@
 #
 ---
 include:
-  - board: sv1
+  - board: sv1_left
+  - board: sv1_right
